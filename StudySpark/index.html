@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moogle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 150px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            width: 350px;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 18px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Moogle</h1>
+
+    <input type="text" id="searchBox" placeholder="Search Moogle...">
+    <br>
+    <button onclick="searchMoogle()">Search</button>
+
+    <script>
+        function searchMoogle() {
+            const query = document.getElementById("searchBox").value.trim();
+            if (query === "") return;
+
+            const googleURL = "https://www.google.com/search?q=" + encodeURIComponent(query);
+
+            // This replaces the current page in history
+            // so pressing Back goes to Moogle, not an in-between page
+            window.location.replace(googleURL);
+        }
+
+        // Allow pressing Enter to search
+        document.getElementById("searchBox").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                searchMoogle();
+            }
+        });
+    </script>
+
+</body>
+</html>
